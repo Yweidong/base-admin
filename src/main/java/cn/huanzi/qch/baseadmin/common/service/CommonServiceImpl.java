@@ -41,6 +41,15 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
     @Autowired
     private CommonRepository<E, T> commonRepository;//注入实体类仓库
 
+
+    /**
+     *
+     *getClass().getGenericSuperclass()返回表示此 Class 所表示的实体（类、接bai口、基本类型或 void）的直接超类的 Type
+     * 然后将其转换ParameterizedType。。
+     * getActualTypeArguments()返回表示此类型实际类型参数的 Type 对象的数组。
+     * [0]就是这个数组中第一个了。。
+     * 简而言之就是获得超类的泛型参数的实际类型。
+     */
     public CommonServiceImpl() {
         Type[] types = ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments();
         this.entityVoClass = (Class<V>) types[0];
